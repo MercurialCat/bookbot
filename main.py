@@ -1,3 +1,9 @@
+from stats import count_words
+
+import sys
+if sys.argv != 2: 
+    print("Usage: python3 main.py <path_to_book>") and sys.exit(1)
+    
 def count_characters(character): #This is to give us a total character count in any given text file.
     character_dict = {}
     lowered_string = character.lower()
@@ -24,22 +30,17 @@ def print_report(char_count):
     char_list.sort(reverse=True, key=sort_on)
 
     for item in char_list:
-        print(f"The '{item['character']}' character was found {item['num']} times")
+        print(f"{item['character']}: {item['num']}")
 
-
-
-def count_words(text):    #This is to give us a total word count of any given text file.
-    words = text.split()
-    return len(words)
 
 #def read_file(file_path): #This is used to read any given text file
 #    with open(file_path, "r") as f:
 #        return f.read()
 
 def main():
-    with open("books/frankenstein.txt") as f:
+    with open(sys.argv[1]) as f:
         file_contents = f.read()
-    print("--- Begin report of books/frankenstein.txt ---") 
+    print(f"--- Begin report of {sys.argv[1]} ---") 
     
 
     word_count = count_words(file_contents)
